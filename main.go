@@ -1,33 +1,23 @@
 package main
 
-import (
-	"fmt"
-	"io/ioutil"
-)
+import "fmt"
 
-func readFile(filename string) (string, error) {
-	dat, err := ioutil.ReadFile(filename)
+func start() {
+	fmt.Println("Start")
+}
 
-	if err != nil {
-		return "", err
-	}
-
-	if len(dat) == 0 {
-		//return "", errors.New("Empty Content")
-		return "", fmt.Errorf("Empty content (filename=%v)", filename)
-	}
-
-	return string(dat), nil
+func stop() {
+	fmt.Println("Stop")
 }
 
 func main() {
-	dat, err := readFile("test.txt")
+	start()
+	defer stop() // LIFO last in first out
 
-	if err != nil {
-		fmt.Printf("Error while reading file: %v \n", err)
-		return
+	names := []string{"Adrien", "Raph", "Aby", "Aurel"}
+
+	for _, n := range names {
+		fmt.Printf("Hello %s\n", n)
+		defer fmt.Printf("Goodbye %s\n", n)
 	}
-
-	fmt.Println("File Content :")
-	fmt.Println(dat)
 }
