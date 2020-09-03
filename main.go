@@ -5,25 +5,14 @@ import (
 )
 
 func main() {
-	var day int = 25
+	var names [3]string
+	fmt.Printf("names=%v (len=%v) \n", names, len(names))
 
-	if day < 15 {
-		fmt.Printf("We 're in the first half of thr month (day=%d)\n", day)
-	} else if day == 18 {
-		fmt.Printf("We are Special Day (day=%d)\n", day)
-	} else {
-		fmt.Printf("We are second half of the month (day=%d)\n", day)
-	}
+	names[0] = "Bob"
+	names[2] = "Adrien"
+	fmt.Printf("names=%v (len=%v) \n", names, len(names))
+	fmt.Printf("names=%v\n", names[2])
 
-	year, month, day := 20010, 110, 100
-
-	fmt.Printf("Date=%d/%d/%d\n", day, month, year)
-
-	if year == 2009 && month == 11 && day == 10 {
-		fmt.Println("The BirthDay for the Golang")
-	} else if year == 2009 || month == 11 || day == 10 {
-		fmt.Println("A peut prêt la date")
-	} else {
-		fmt.Println("Just a another Day")
-	}
+	odds := [4]int{1, 3, 5, 7}
+	fmt.Printf("odds=%v len=%d\n", odds, len(odds))
 }
