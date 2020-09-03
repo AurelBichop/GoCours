@@ -5,14 +5,26 @@ import (
 )
 
 func main() {
-	var names [3]string
-	fmt.Printf("names=%v (len=%v) \n", names, len(names))
+	nums := make([]int, 2, 3)
+	nums[0] = 10
+	nums[1] = -2
 
-	names[0] = "Bob"
-	names[2] = "Adrien"
-	fmt.Printf("names=%v (len=%v) \n", names, len(names))
-	fmt.Printf("names=%v\n", names[2])
+	fmt.Printf("%v,,  len=%d, cap=%d\n", nums, len(nums), cap(nums))
 
-	odds := [4]int{1, 3, 5, 7}
-	fmt.Printf("odds=%v len=%d\n", odds, len(odds))
+	nums = append(nums, 64)
+	fmt.Printf("%v,,  len=%d, cap=%d\n", nums, len(nums), cap(nums))
+
+	nums = append(nums, -8)
+	fmt.Printf("%v,,  len=%d, cap=%d\n", nums, len(nums), cap(nums))
+
+	letters := []string{"g", "o", "l", "a", "n", "g"}
+	//letters = append(letters, "!")
+	fmt.Printf("%v,,  len=%d, cap=%d\n", letters, len(letters), cap(letters))
+
+	sub1 := letters[0:2]
+	sub2 := letters[2:]
+
+	fmt.Printf("%v,,  len=%d, cap=%d\n", sub1, len(sub1), cap(sub1))
+	fmt.Printf("%v,,  len=%d, cap=%d\n", sub2, len(sub2), cap(sub2))
+
 }
