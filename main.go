@@ -5,26 +5,33 @@ import (
 )
 
 func main() {
-	nums := make([]int, 2, 3)
-	nums[0] = 10
-	nums[1] = -2
+	sum := 0
+	for i := 1; i <= 10; i++ {
+		sum += i
+	}
+	fmt.Printf("Sum result= %v\n", sum)
 
-	fmt.Printf("%v,,  len=%d, cap=%d\n", nums, len(nums), cap(nums))
+	eventCnt := 0
+	for eventCnt < 3 {
+		fmt.Println("Retrieving events")
+		eventCnt++
+		if eventCnt == 3 {
+			fmt.Printf("Got %d notifications \n", eventCnt)
+		}
+	}
 
-	nums = append(nums, 64)
-	fmt.Printf("%v,,  len=%d, cap=%d\n", nums, len(nums), cap(nums))
+	i := 0
+	for {
+		i++
+		if i%2 != 0 {
+			fmt.Println("odd looping")
+			continue
+		}
+		fmt.Println("Loopinq ...")
 
-	nums = append(nums, -8)
-	fmt.Printf("%v,,  len=%d, cap=%d\n", nums, len(nums), cap(nums))
-
-	letters := []string{"g", "o", "l", "a", "n", "g"}
-	//letters = append(letters, "!")
-	fmt.Printf("%v,,  len=%d, cap=%d\n", letters, len(letters), cap(letters))
-
-	sub1 := letters[0:2]
-	sub2 := letters[2:]
-
-	fmt.Printf("%v,,  len=%d, cap=%d\n", sub1, len(sub1), cap(sub1))
-	fmt.Printf("%v,,  len=%d, cap=%d\n", sub2, len(sub2), cap(sub2))
-
+		if i >= 10 {
+			fmt.Println("Loop END")
+			break
+		}
+	}
 }
