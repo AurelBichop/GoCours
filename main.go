@@ -1,22 +1,33 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
 
-type Adresse struct {
-	street, city string
-}
-
-type Personne struct {
-	Name string
-	Age  int
-	Addr Adresse
-}
+	"training.go/GoCours/player"
+)
 
 func main() {
-	var p Personne
-	p.Name = "Bod"
-	p.Age = 18
-	p.Addr.city = "Perpignan"
+	var p1 player.Player
+	p1.Name = "Adrien"
+	p1.Age = 10
 
-	fmt.Println(p)
+	// une maniere (toute les variables doivent être renseigné)
+	a := player.Avatar{"http://avatar.jpg"}
+
+	fmt.Printf("avatar = %v\n", a)
+
+	//une autre
+	p3 := player.Player{
+		Name: "John",
+		Age:  25,
+		Avatar: player.Avatar{
+			Url: "http://url.com",
+		},
+	}
+
+	fmt.Printf("player3 = %v\n", p3)
+
+	p4 := player.New("Bobette")
+	p4.Avatar = a
+	fmt.Printf("player4 = %v\n", p4)
 }
