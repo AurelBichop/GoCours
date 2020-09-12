@@ -4,40 +4,31 @@ import (
 	"fmt"
 )
 
-type User struct {
-	Name  string
-	Email string
+type Rect struct {
+	Width, Height int
 }
 
-type Admin struct {
-	User
-	Level int
+//receiver function
+func (r Rect) Area() int {
+	return r.Width * r.Height
+}
+
+func (r Rect) Doublesize() {
+	r.Width *= 2
+	r.Height *= 2
+	fmt.Println("In DoubleSize()", r)
+}
+
+//Pour un Affichage personnalisé
+func (r Rect) String() string {
+	return fmt.Sprintf("Rectangle ==> width=%v, height=%v", r.Width, r.Height)
 }
 
 func main() {
-	u := User{
-		Name:  "Bob",
-		Email: "Bob@email.com",
-	}
+	r := Rect{2, 4}
+	fmt.Printf("Restangle Aire = %v\n", r.Area())
+	fmt.Println(r)
 
-	fmt.Printf("User = %v\n", u)
-
-	a := Admin{
-		Level: 5,
-		User: User{
-			Name: "Aurel",
-			Email: "aurel@gmail.com",
-		},
-	}
-
-	admin := Admin{
-		Level: 2,
-	}
-
-	admin.Name = "Alice"
-	admin.Email = "alice@org.com"
-	fmt.Printf("Admin = %v\n", admin)
-
-	fmt.Println("Declaration différente")
-	fmt.Printf("Admin = %v\n", a)
+	r.Doublesize()
+	fmt.Println("Main", r)
 }
