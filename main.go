@@ -4,31 +4,56 @@ import (
 	"fmt"
 )
 
-type Rect struct {
-	Width, Height int
+func UpdateVal(val string) {
+	val = "value"
 }
 
-//receiver function
-func (r Rect) Area() int {
-	return r.Width * r.Height
-}
-
-func (r Rect) Doublesize() {
-	r.Width *= 2
-	r.Height *= 2
-	fmt.Println("In DoubleSize()", r)
-}
-
-//Pour un Affichage personnalisé
-func (r Rect) String() string {
-	return fmt.Sprintf("Rectangle ==> width=%v, height=%v", r.Width, r.Height)
+func UpdatePtr(ptr *string) {
+	*ptr = "pointer"
 }
 
 func main() {
-	r := Rect{2, 4}
-	fmt.Printf("Restangle Aire = %v\n", r.Area())
-	fmt.Println(r)
 
-	r.Doublesize()
-	fmt.Println("Main", r)
+	i := 69
+	var p *int = &i
+
+	fmt.Printf("i=%v\n", i)
+	fmt.Printf("p=%v\n", p)
+	fmt.Printf("*p=%v\n", *p)
+	fmt.Println("------------------")
+
+	s := "YOLO"
+	sPtr := &s
+	var s2 string = *sPtr
+
+	fmt.Println("String Pointer")
+
+	fmt.Printf("s=%v\n", s)
+	fmt.Printf("sPtr=%v\n", sPtr)
+	fmt.Printf("*sPtr=%v\n", *sPtr)
+	fmt.Printf("s2=%v\n", s2)
+
+	fmt.Println("------------------")
+
+	*sPtr = "Yann"
+	fmt.Println("Dereference and Update")
+
+	fmt.Printf("s=%v\n", s)
+	fmt.Printf("sPtr=%v\n", sPtr)
+	fmt.Printf("*sPtr=%v\n", *sPtr)
+	fmt.Printf("s2=%v\n", s2)
+	fmt.Println("------------------")
+
+	UpdateVal(s)
+	fmt.Println("Func Update Val")
+	fmt.Printf("s=%v\n", s)
+	fmt.Printf("*sPtr=%v\n", *sPtr)
+	fmt.Println("------------------")
+
+	//UpdatePtr(sPtr)
+	UpdatePtr(&s)
+	fmt.Println("Func Update Pointer")
+	fmt.Printf("s=%v\n", s)
+	fmt.Printf("*sPtr=%v\n", *sPtr)
+	fmt.Println("------------------")
 }
