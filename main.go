@@ -2,22 +2,21 @@ package main
 
 import "fmt"
 
-func start() {
-	fmt.Println("Start")
+type Adresse struct {
+	street, city string
 }
 
-func stop() {
-	fmt.Println("Stop")
+type Personne struct {
+	Name string
+	Age  int
+	Addr Adresse
 }
 
 func main() {
-	start()
-	defer stop() // LIFO last in first out
+	var p Personne
+	p.Name = "Bod"
+	p.Age = 18
+	p.Addr.city = "Perpignan"
 
-	names := []string{"Adrien", "Raph", "Aby", "Aurel"}
-
-	for _, n := range names {
-		fmt.Printf("Hello %s\n", n)
-		defer fmt.Printf("Goodbye %s\n", n)
-	}
+	fmt.Println(p)
 }
