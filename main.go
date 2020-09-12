@@ -2,58 +2,53 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
-func UpdateVal(val string) {
-	val = "value"
+type Post struct {
+	Title     string
+	Text      string
+	published bool
 }
 
-func UpdatePtr(ptr *string) {
-	*ptr = "pointer"
+func (p Post) Headline() string {
+	return fmt.Sprintf("%v - %v", p.Title, p.Text[:50])
+}
+
+func (p *Post) Published() bool {
+	return p.published
+}
+
+func (p *Post) Publish() {
+	p.published = true
+}
+
+func (p *Post) UnPublished() {
+	p.published = false
+}
+
+func UpperTitle(p *Post) {
+	p.Title = strings.ToUpper(p.Title)
 }
 
 func main() {
+	p := Post{
+		Title: "Go releaser",
+		Text: `Lorem ipsum edsz fzefze f ze
+efze fez fzef zef ze f f zez  ezf ezfzef ezf zfpezkfopzejoàfuziçfh uguzgfygzeyuqafgqeyfgqzgg qfg uiq`,
+	}
 
-	i := 69
-	var p *int = &i
+	fmt.Println(p.Headline())
+	fmt.Printf("Post Published %v\n", p.Published())
 
-	fmt.Printf("i=%v\n", i)
-	fmt.Printf("p=%v\n", p)
-	fmt.Printf("*p=%v\n", *p)
-	fmt.Println("------------------")
+	p.Publish()
+	fmt.Printf("Post Published %v\n", p.Published())
 
-	s := "YOLO"
-	sPtr := &s
-	var s2 string = *sPtr
-
-	fmt.Println("String Pointer")
-
-	fmt.Printf("s=%v\n", s)
-	fmt.Printf("sPtr=%v\n", sPtr)
-	fmt.Printf("*sPtr=%v\n", *sPtr)
-	fmt.Printf("s2=%v\n", s2)
-
-	fmt.Println("------------------")
-
-	*sPtr = "Yann"
-	fmt.Println("Dereference and Update")
-
-	fmt.Printf("s=%v\n", s)
-	fmt.Printf("sPtr=%v\n", sPtr)
-	fmt.Printf("*sPtr=%v\n", *sPtr)
-	fmt.Printf("s2=%v\n", s2)
-	fmt.Println("------------------")
-
-	UpdateVal(s)
-	fmt.Println("Func Update Val")
-	fmt.Printf("s=%v\n", s)
-	fmt.Printf("*sPtr=%v\n", *sPtr)
-	fmt.Println("------------------")
-
-	//UpdatePtr(sPtr)
-	UpdatePtr(&s)
-	fmt.Println("Func Update Pointer")
-	fmt.Printf("s=%v\n", s)
-	fmt.Printf("*sPtr=%v\n", *sPtr)
-	fmt.Println("------------------")
+	pythonPost := &Post{
+		Title: "Python releaser",
+		Text: `Lorem ipsum edsz fzefze f ze
+efze fez fzef zef fuhdhsfgyfd ezf ezfzef ezf zfpezkfopzejoàfuziçfh uguzgfygzeyuqafgqeyfgqzgg qfg uiq`,
+	}
+	UpperTitle(pythonPost)
+	fmt.Println(pythonPost.Headline())
 }
