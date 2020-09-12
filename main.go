@@ -2,32 +2,42 @@ package main
 
 import (
 	"fmt"
-
-	"training.go/GoCours/player"
 )
 
+type User struct {
+	Name  string
+	Email string
+}
+
+type Admin struct {
+	User
+	Level int
+}
+
 func main() {
-	var p1 player.Player
-	p1.Name = "Adrien"
-	p1.Age = 10
+	u := User{
+		Name:  "Bob",
+		Email: "Bob@email.com",
+	}
 
-	// une maniere (toute les variables doivent être renseigné)
-	a := player.Avatar{"http://avatar.jpg"}
+	fmt.Printf("User = %v\n", u)
 
-	fmt.Printf("avatar = %v\n", a)
-
-	//une autre
-	p3 := player.Player{
-		Name: "John",
-		Age:  25,
-		Avatar: player.Avatar{
-			Url: "http://url.com",
+	a := Admin{
+		Level: 5,
+		User: User{
+			Name: "Aurel",
+			Email: "aurel@gmail.com",
 		},
 	}
 
-	fmt.Printf("player3 = %v\n", p3)
+	admin := Admin{
+		Level: 2,
+	}
 
-	p4 := player.New("Bobette")
-	p4.Avatar = a
-	fmt.Printf("player4 = %v\n", p4)
+	admin.Name = "Alice"
+	admin.Email = "alice@org.com"
+	fmt.Printf("Admin = %v\n", admin)
+
+	fmt.Println("Declaration différente")
+	fmt.Printf("Admin = %v\n", a)
 }
