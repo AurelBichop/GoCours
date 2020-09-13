@@ -119,7 +119,7 @@ func drawState(g *Game, guess string) {
 
 	switch g.State {
 	case "goodGuess":
-		fmt.Print("Good Guess!")
+		fmt.Println("Good Guess!")
 	case "alreadyGuessed":
 		fmt.Printf("Letter %s is already used", guess)
 	case "badGuess":
