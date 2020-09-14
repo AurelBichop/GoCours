@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
+	"training.go/CoursGo/HANGMAN/dictionary"
 	"training.go/CoursGo/HANGMAN/hangman"
-	"training.go/CoursGo/HANGMAN/hangman/dictionary"
 )
 
 func main() {
