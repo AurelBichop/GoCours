@@ -34,7 +34,8 @@ func TestGameGoodGuess(t *testing.T) {
 
 func TestGameAlreadyGuessed(t *testing.T) {
 	g, _ := New(3, "bob")
-	g.UsedLetters = append(g.UsedLetters, "B")
+	//g.UsedLetters = append(g.UsedLetters, "B")
+	g.MakeAGuess("b")
 	g.MakeAGuess("b")
 
 	validState(t, "alreadyGuessed", g.State)
@@ -49,16 +50,21 @@ func TestGameBadGuess(t *testing.T) {
 
 func TestGameWon(t *testing.T) {
 	g, _ := New(3, "bob")
-	g.FoundLetters = []string{"B", "_", "B"}
+	//g.FoundLetters = []string{"B", "_", "B"}
+	//g.MakeAGuess("o")
+	g.MakeAGuess("b")
 	g.MakeAGuess("o")
+	g.MakeAGuess("b")
 
 	validState(t, "won", g.State)
 }
 
 func TestGameLost(t *testing.T) {
 	g, _ := New(3, "bob")
-	g.TurnsLeft = 1
+	//g.TurnsLeft = 1
+	g.MakeAGuess("a")
 	g.MakeAGuess("z")
+	g.MakeAGuess("e")
 
 	validState(t, "lost", g.State)
 }

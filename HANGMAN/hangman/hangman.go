@@ -52,6 +52,11 @@ func (g *Game) LoseTurn(guess string) {
 func (g *Game) MakeAGuess(guess string) {
 	guess = strings.ToUpper(guess)
 
+	switch g.State {
+	case "won", "lost":
+		return
+	}
+
 	if lettersInWord(guess, g.UsedLetters) {
 		g.State = "alreadyGuessed"
 	} else if lettersInWord(guess, g.Letters) {
