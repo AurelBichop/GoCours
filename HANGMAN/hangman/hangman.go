@@ -37,6 +37,11 @@ func (g *Game) RevealLetter(guess string) {
 	}
 }
 
+func (g *Game) LoseTurn(guess string) {
+	g.TurnsLeft--
+	g.UsedLetters = append(g.UsedLetters, guess)
+}
+
 func (g *Game) MakeAGuess(guess string) {
 	guess = strings.ToUpper(guess)
 
@@ -48,6 +53,13 @@ func (g *Game) MakeAGuess(guess string) {
 
 		if hasWon(g.Letters, g.FoundLetters) {
 			g.State = "won"
+		}
+	} else {
+		g.State = "badGuess"
+		g.LoseTurn(guess)
+
+		if g.TurnsLeft <= 0 {
+			g.State = "lost"
 		}
 	}
 }
